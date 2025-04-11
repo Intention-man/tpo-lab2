@@ -13,9 +13,12 @@ public class Csc implements Function {
 
     public double calculate(double x, double eps) {
         validatePrecision(eps);
+        if (x == 0){
+            return Double.NaN;
+        }
         x = round(x, 5);
         double sinValue = sin.calculate(x, eps);
-        if (Double.isNaN(sinValue) || sinValue == 0) throw new ArithmeticException();
+        if (Double.isNaN(sinValue)) throw new ArithmeticException();
         return 1 / sinValue;
     }
 }

@@ -13,7 +13,7 @@ public class Sec implements Function {
 
     public double calculate(double x, double eps) {
         validatePrecision(eps);
-        x = round(x, 5);
+        x = round(x, 6);
         double cosValue = cos.calculate(x, eps);
         if (Double.isNaN(cosValue)) return Double.NaN;
         return 1 / cosValue;

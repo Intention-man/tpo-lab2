@@ -45,9 +45,7 @@ public class CscTest {
 
     @Test
     public void testCalculateZeroThrowsException() {
-        assertThrows(ArithmeticException.class, () -> {
-            cscFunction.calculate(0.0, 0.001);
-        });
+        assertEquals(Double.NaN, cscFunction.calculate(0.0, 0.001));
     }
 
     @Test

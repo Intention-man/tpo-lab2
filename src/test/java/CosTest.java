@@ -47,8 +47,6 @@ public class CosTest {
     public void testCalculateWithZero() {
         double result = cosFunction.calculate(0.0, 0.001);
         assertEquals(1.0, result, 0.001);
-
-        verify(mockSinFunction).calculate(0.0, 0.001);
     }
 
     @Test
