@@ -18,7 +18,6 @@ public class ResultsCsvWriter {
                 try {
                     result = function.calculate(x, precision);
                 } catch (ArithmeticException e) {
-                    e.printStackTrace();
                     continue;
                 }
                 csvPrinter.printRecord(x, result);

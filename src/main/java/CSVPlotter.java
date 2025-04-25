@@ -16,10 +16,8 @@ public class CSVPlotter {
     private static final String OUTPUT_DIR = "src/main/resources/plots";
 
     public static void main(String[] args) throws Exception {
-        // Создаем директорию для графиков, если ее нет
         Files.createDirectories(Paths.get(OUTPUT_DIR));
 
-        // Получаем список всех CSV-файлов
         File[] csvFiles = new File(INPUT_DIR).listFiles(
                 (dir, name) -> name.toLowerCase().endsWith(".csv")
         );
@@ -29,10 +27,10 @@ public class CSVPlotter {
             return;
         }
 
-        // Обрабатываем каждый файл
         for (File csvFile : csvFiles) {
             List<Double> xData = new ArrayList<>();
             List<Double> yData = new ArrayList<>();
+
 
             try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                 String line;
@@ -45,12 +43,14 @@ public class CSVPlotter {
                     }
 
                     String[] values = line.split(",");
-                    xData.add(Double.parseDouble(values[0]));
-                    yData.add(Double.parseDouble(values[1]));
+                    double x = Double.parseDouble(values[0]);
+                    double y = Double.parseDouble(values[1]);
+                    if (Double.isInfinite(y) || Double.isNaN(y)) continue;
+                    xData.add(x);
+                    yData.add(y);
                 }
             }
 
-            // Создаем график
             XYChart chart = new XYChartBuilder()
                     .width(1600)
                     .height(1200)
@@ -66,7 +66,6 @@ public class CSVPlotter {
 
             chart.addSeries("Data", xData, yData);
 
-            // Сохраняем график
             String outputFileName = csvFile.getName().replace(".csv", ".png");
             Path outputPath = Paths.get(OUTPUT_DIR, outputFileName);
             BitmapEncoder.saveBitmap(chart, outputPath.toString(), BitmapEncoder.BitmapFormat.PNG);
