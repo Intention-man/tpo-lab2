@@ -44,6 +44,17 @@
             <version>1.9.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>3.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart-demo</artifactId>
+            <version>3.8.5</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
